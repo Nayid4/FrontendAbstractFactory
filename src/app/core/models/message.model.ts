@@ -1,3 +1,8 @@
+export interface Message {
+    recipient: string,
+    data: string
+}
+
 export interface EmailMessage {
   to: string,
   message: string
