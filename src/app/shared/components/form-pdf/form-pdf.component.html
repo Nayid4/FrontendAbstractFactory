@@ -1,1 +1,74 @@
-<p>form-pdf works!</p>
+<p-dialog header="{{ titulo }}" [modal]="true" [(visible)]="visible" [style]="{ width: '30rem' }" (onHide)="cerrarDialog()">
+    <span class="p-text-secondary block mb-4"> Ingrese opciones del reporte PDF.</span>
+  
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+      
+      <!-- Título del reporte -->
+      <label class="flex flex-col gap-1 font-bold">
+        Título del Reporte
+        <input type="text" formControlName="title"
+               placeholder="Ingrese el título"
+               pInputText
+               [ngClass]="{ 'p-invalid': campoInvalido('title') }" />
+      </label>
+  
+      <!-- Incluir Logo -->
+      <div class="flex items-center gap-2">
+        <p-checkbox formControlName="includeLogo" binary="true"></p-checkbox>
+        <label class="font-bold">Incluir logo de la empresa</label>
+      </div>
+  
+      <!-- Incluir detalles de pago -->
+      <div class="flex items-center gap-2">
+        <p-checkbox formControlName="includePaymentDetails" binary="true"></p-checkbox>
+        <label class="font-bold">Incluir detalles del pago</label>
+      </div>
+  
+      <!-- Incluir información del usuario -->
+      <div class="flex items-center gap-2">
+        <p-checkbox formControlName="includeUserInfo" binary="true"></p-checkbox>
+        <label class="font-bold">Incluir información del usuario</label>
+      </div>
+  
+      <!-- Incluir timestamp -->
+      <div class="flex items-center gap-2">
+        <p-checkbox formControlName="includeTimestamp" binary="true"></p-checkbox>
+        <label class="font-bold">Mostrar fecha y hora</label>
+      </div>
+  
+      <!-- Tema -->
+      <label class="flex flex-col gap-1 font-bold">
+        Tema del reporte
+        <p-dropdown [options]="themes"
+                    formControlName="theme"
+                    placeholder="Seleccione un tema"
+                    [ngClass]="{ 'p-invalid': campoInvalido('theme') }">
+        </p-dropdown>
+      </label>
+  
+      <!-- Formato -->
+      <label class="flex flex-col gap-1 font-bold">
+        Formato del reporte
+        <p-dropdown [options]="formats"
+                    formControlName="format"
+                    placeholder="Seleccione un formato"
+                    [ngClass]="{ 'p-invalid': campoInvalido('format') }">
+        </p-dropdown>
+      </label>
+  
+      <!-- Mensaje del pie -->
+      <label class="flex flex-col gap-1 font-bold">
+        Mensaje del pie de página
+        <input type="text" formControlName="footerMessage"
+               placeholder="Mensaje personalizado"
+               pInputText />
+      </label>
+  
+      <!-- Botones -->
+      <div class="flex justify-end gap-2 mt-4">
+        <p-button type="button" label="Cancelar" severity="secondary" (click)="cerrarDialog()" />
+        <p-button type="submit" label="Generar" styleClass="bg-gray-800! border-none! text-white! hover:bg-gray-700!" />
+      </div>
+    </form>
+  </p-dialog>
+  

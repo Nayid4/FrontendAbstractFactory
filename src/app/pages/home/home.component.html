@@ -41,6 +41,18 @@
         <div>
           <p [ngClass]="selectedTheme.createText().StyleClass">El resultado es: {{ resultado }}</p>
         </div>
+        <button 
+            (click)="mostrarFormulario()"
+            [ngClass]="selectedTheme.createButton().StyleClass"
+        >
+            Generar Reporte PDF
+        </button>
       </section>
+      <app-form-pdf 
+        [visible]="visibleFormulario" 
+        (registrar)="GenerarPDF($event)"
+        (cerrar)="ocultarFormulario()"
+       />
     </main>
+    
   </div>

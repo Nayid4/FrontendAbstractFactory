@@ -4,13 +4,16 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Theme } from '../../core/models/ThemeAbstractFactory/Themes/Theme';
 import { PaymentService } from '../../core/services/payment.service';
 import { ThemeService } from '../../core/services/theme.service';
+import { PDFReportOptions } from '../../core/models/PDFReportOptions.model';
+import { FormPDFComponent } from '../../shared/components/form-pdf/form-pdf.component';
 
 @Component({
   selector: 'app-home',
   imports: [
     FormsModule, 
     ReactiveFormsModule, 
-    CommonModule
+    CommonModule,
+    FormPDFComponent
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -27,6 +30,7 @@ export class HomeComponent {
     { key: 'CASH', value: 'Efectivo' },
   ]
   resultado: number = 0;
+  visibleFormulario: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -73,5 +77,18 @@ export class HomeComponent {
     } else {
       console.log('Formulario inválido');
     }
+  }
+
+  GenerarPDF(pdf: PDFReportOptions): void {
+    this.ocultarFormulario();
+  }
+
+  mostrarFormulario() {
+    this.visibleFormulario = !this.visibleFormulario;
+
+  }
+
+  ocultarFormulario() {
+    this.visibleFormulario = false
   }
 }
