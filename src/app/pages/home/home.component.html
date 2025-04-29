@@ -17,7 +17,6 @@
           <label for="cantidad">Cantidad
             <input 
               type="number" 
-              placeholder="Cantidad" 
               formControlName="cantPayment"
               [ngClass]="selectedTheme.createInput().StyleClass"
             >
@@ -30,6 +29,24 @@
                 <option value="{{ type.key }}">{{ type.value }}</option>
               }
             </select>
+          </label>
+
+          <label>
+            Seleccione el tipo de notificación
+            <select formControlName="notificationType">
+              @for (type of notificationTypes; track $index) {
+                <option value="{{ type.key }}">{{ type.value }}</option>
+              }
+            </select>
+          </label>
+
+          <label for="recipient">
+            Destinatario
+            <input 
+              type="text" 
+              formControlName="recipient"
+              [ngClass]="selectedTheme.createInput().StyleClass"
+            >
           </label>
         </div>
   

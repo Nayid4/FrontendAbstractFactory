@@ -1,4 +1,5 @@
 export interface Message {
+    notificationType: string,
     recipient: string,
     data: string
 }
