@@ -7,6 +7,7 @@ import { ThemeService } from '../../core/services/theme.service';
 import { PDFReportOptions } from '../../core/models/PDFReportOptions.model';
 import { FormPDFComponent } from '../../shared/components/form-pdf/form-pdf.component';
 import { Message } from '../../core/models/message.model';
+import { ArchivoService } from '../../core/services/archivo.service';
 
 @Component({
   selector: 'app-home',
@@ -40,6 +41,7 @@ export class HomeComponent {
     private fb: FormBuilder,
     private paymentService: PaymentService,
     private themeService: ThemeService,
+    private archivoService: ArchivoService,
     private chdr: ChangeDetectorRef
   ) {}
 
@@ -98,7 +100,11 @@ export class HomeComponent {
   }
 
   GenerarPDF(pdf: PDFReportOptions): void {
-    this.ocultarFormulario();
+    this.paymentService.GeneratePDFReport(pdf).subscribe({
+      next: (response) => {
+        this.archivoService.descargar(response, "reporte.pdf")
+      }
+    });
   }
 
   mostrarFormulario() {

@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Message } from '../models/message.model';
+import { PDFReportOptions } from '../models/PDFReportOptions.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,5 +24,13 @@ export class PaymentService {
   SendNotification(message: Message) {
     const url = `${this.api}/${this.endpoint}/send?notificationType=${message.notificationType}`;
     return this.http.post(url, message);
+  }
+
+  GeneratePDFReport(
+    options: PDFReportOptions): Observable<Blob> {
+    const url = `${this.api}/${this.endpoint}/generatePDFReport`;
+    const formData = new FormData();
+    formData.append('options', JSON.stringify(options));
+    return this.http.post<Blob>(url, formData);
   }
 }
