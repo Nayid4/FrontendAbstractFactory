@@ -15,7 +15,7 @@ export class PaymentService {
   }
 
   CalculatePayment(paymentType: string, amount: number): Observable<number> {
-    const url = `${this.api}/${this.endpoint}/send?paymentType=${paymentType}&amount=${amount}`;
+    const url = `${this.api}/${this.endpoint}/finalAmount?paymentType=${paymentType}&amount=${amount}`;
     return this.http.get<number>(url);
   }
 }
