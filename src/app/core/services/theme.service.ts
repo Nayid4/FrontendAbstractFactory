@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Theme } from '../models/Themes/Theme';
-import { LightTheme } from '../models/Themes/LigthTheme';
-import { DarkTheme } from '../models/Themes/DarkTheme';
+import { Theme } from '../models/ThemeAbstractFactory/Themes/Theme';
+import { LightTheme } from '../models/ThemeAbstractFactory/Themes/LigthTheme';
+import { DarkTheme } from '../models/ThemeAbstractFactory/Themes/DarkTheme';
 
 @Injectable({
   providedIn: 'root'

@@ -1,0 +1,46 @@
+<div class="fondo" [ngClass]="selectedTheme.createBackGround().StyleClass">
+    <header class="header" >
+      <span>Calcular Pagamentos</span>
+      <select name="" id="" (change)="onThemeChange($event)">
+        @for (theme of themes; track $index) {
+          <option value="{{ theme }}">{{ theme }}</option>
+        }
+      </select>
+    </header>
+    <main class="contain">
+      <h1 class="contain-title" [ngClass]="selectedTheme.createTitle().StyleClass">
+        Hola, Calcule su Pagamento
+      </h1>
+  
+      <form class="contain-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="cantidad">Cantidad
+            <input 
+              type="number" 
+              placeholder="Cantidad" 
+              formControlName="cantPayment"
+              [ngClass]="selectedTheme.createInput().StyleClass"
+            >
+          </label>
+    
+          <label>
+            Tipo de Pago
+            <select formControlName="paymentType">
+              @for (type of paymentTypes; track $index) {
+                <option value="{{ type.key }}">{{ type.value }}</option>
+              }
+            </select>
+          </label>
+        </div>
+  
+        <button [ngClass]="selectedTheme.createButton().StyleClass" type="submit">Calcular</button>
+      </form>
+  
+      <section class="contain-result">
+        <h2>Resultados</h2>
+        <div>
+          <p [ngClass]="selectedTheme.createText().StyleClass">El resultado es: {{ resultado }}</p>
+        </div>
+      </section>
+    </main>
+  </div>
