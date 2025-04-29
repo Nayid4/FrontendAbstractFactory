@@ -22,13 +22,13 @@ export class PaymentService {
   }
 
   SendNotification(message: Message) : Observable<MessageResponse> {
-    const url = `${this.api}/${this.endpoint}/send?notificationType=${message.notificationType}`;
+    const url = `${this.api}/notification/send?notificationType=${message.notificationType}`;
     return this.http.post<MessageResponse>(url, message);
   }
 
   GeneratePDFReport(
     options: PDFReportOptions): Observable<Blob> {
-    const url = `${this.api}/${this.endpoint}/generatePDFReport`;
+    const url = `${this.api}/generatePDFReport`;
     const formData = new FormData();
     formData.append('options', JSON.stringify(options));
     return this.http.post<Blob>(url, formData);
