@@ -2,7 +2,13 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PaymentService } from './core/services/payment.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ThemeService } from './core/services/theme.service';
 import { Theme } from './core/models/Themes/Theme';
 
@@ -22,8 +28,8 @@ export class AppComponent implements OnInit {
   paymentTypes: { key: string; value: string }[] = [
     { key: 'CREDIT_CARD', value: 'Tarjeta de Crédito' },
     { key: 'DEBIT_CARD', value: 'Tarjeta de Debito' },
-    { key: 'CASH', value: 'Efectivo' },
-  ]
+    { key: 'PAYPAL', value: 'Paypal' },
+  ];
   resultado: number = 0;
 
   constructor(
@@ -37,7 +43,7 @@ export class AppComponent implements OnInit {
     this.initialForm();
     this.changeTheme('light');
 
-    console.log(this.selectedTheme.createBackGround().StyleClass)
+    console.log(this.selectedTheme.createBackGround().StyleClass);
   }
 
   initialForm(): void {
@@ -53,7 +59,7 @@ export class AppComponent implements OnInit {
     this.changeTheme(selectElement.value);
   }
 
-  changeTheme(theme: string){
+  changeTheme(theme: string) {
     this.selectedTheme = this.themeService.ChangeTheme(theme);
   }
 
