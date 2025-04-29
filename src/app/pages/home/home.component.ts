@@ -25,7 +25,7 @@ export class HomeComponent {
   paymentTypes: { key: string; value: string }[] = [
     { key: 'CREDIT_CARD', value: 'Tarjeta de Crédito' },
     { key: 'DEBIT_CARD', value: 'Tarjeta de Debito' },
-    { key: 'CASH', value: 'Efectivo' },
+    { key: 'PAYPAL', value: 'Paypal' },
   ];
 
   notificationTypes: { key: string; value: string }[] = [
