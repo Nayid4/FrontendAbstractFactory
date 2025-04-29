@@ -8,6 +8,7 @@ import { PDFReportOptions } from '../../core/models/PDFReportOptions.model';
 import { FormPDFComponent } from '../../shared/components/form-pdf/form-pdf.component';
 import { Message } from '../../core/models/message.model';
 import { ArchivoService } from '../../core/services/archivo.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -42,6 +43,7 @@ export class HomeComponent {
     private paymentService: PaymentService,
     private themeService: ThemeService,
     private archivoService: ArchivoService,
+    private messageService: MessageService,
     private chdr: ChangeDetectorRef
   ) {}
 
@@ -89,7 +91,11 @@ export class HomeComponent {
 
             this.paymentService.SendNotification(message).subscribe({
               next: (response) => {
-                //console.log(response);
+                this.messageService.add({
+                  severity: 'success',
+                    summary: response.status,
+                    detail: response.message,
+                  });
               },
             });
           },

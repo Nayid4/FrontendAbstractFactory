@@ -4,6 +4,11 @@ export interface Message {
     data: string
 }
 
+export interface MessageResponse {
+    message: string,
+    status: string
+}
+
 export interface EmailMessage {
   to: string,
   message: string

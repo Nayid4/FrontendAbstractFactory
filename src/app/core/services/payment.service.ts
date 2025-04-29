@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Message } from '../models/message.model';
+import { Message, MessageResponse } from '../models/message.model';
 import { PDFReportOptions } from '../models/PDFReportOptions.model';
 
 @Injectable({
@@ -21,9 +21,9 @@ export class PaymentService {
     return this.http.get<number>(url);
   }
 
-  SendNotification(message: Message) {
+  SendNotification(message: Message) : Observable<MessageResponse> {
     const url = `${this.api}/${this.endpoint}/send?notificationType=${message.notificationType}`;
-    return this.http.post(url, message);
+    return this.http.post<MessageResponse>(url, message);
   }
 
   GeneratePDFReport(
